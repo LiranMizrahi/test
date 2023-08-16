@@ -15,26 +15,22 @@ import { TitleComponent } from './title/title.component';
     imports: [CommonModule, RouterOutlet, MatTabsModule, Tab1Component, Tab2Component]
 })
 export class AppComponent {
-  selectedIndex = 0;
+  selectedIndex = 3;
   tabs = [
-    {label:"tab1",component:Tab1Component},
-    {label:"tab2",component:Tab1Component},
-    {label:"tab3",component:Tab1Component},
-    {label:"tab4",component:Tab1Component},
-    {label:"tab5",component:Tab2Component}]
+    {label:"tab1",component:Tab1Component,index:1,selectedIndex:this.selectedIndex},
+    {label:"tab2",component:Tab1Component,index:2,selectedIndex:this.selectedIndex},
+    {label:"tab3",component:Tab1Component,index:3,selectedIndex:this.selectedIndex},
+    {label:"tab4",component:Tab1Component,index:4,selectedIndex:this.selectedIndex},
+    {label:"tab5",component:Tab2Component,index:5,selectedIndex:this.selectedIndex}]
   
     myInput = {'index':this.selectedIndex,'selectedIndex': this.selectedIndex,component:TitleComponent}
     title = 'test';
 
     onTabChange(event:any){
       this.selectedIndex = event.index
-      this.myInput.selectedIndex =event.index// = {'index':this.selectedIndex}
-
-
+      this.tabs.map((tab => tab.selectedIndex=this.selectedIndex))
+      // this.myInput.selectedIndex =event.index// = {'index':this.selectedIndex}
     }
 
-    getInput(index:any){
-      this.myInput.index =index
-      return this.myInput//{...this.myInput,{index:4}}
-    }
+  
 }
